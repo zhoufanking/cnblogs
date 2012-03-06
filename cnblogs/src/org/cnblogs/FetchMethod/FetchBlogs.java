@@ -21,10 +21,12 @@ public class FetchBlogs implements Fetch{
 	}
 
 	@Override
-	public void getItems() {
+	public Vector<String> getItems() {
 		// TODO Auto-generated method stub
 		Elements news = null;
+		Vector<String> itemsVec;
 		news = doc.getElementsByClass("titlelnk");
+		itemsVec = new Vector<String>();
 
 		if (news != null) {
 			// System.out.println(news.text());
@@ -34,13 +36,17 @@ public class FetchBlogs implements Fetch{
 																	// unicode涓��绌烘�
 			}
 		}
+		return itemsVec;
 
 	}
 
 	@Override
-	public  void getItemSummery() {
+	public  Vector<String> getItemSummery() {
 		// TODO Auto-generated method stub
 		Elements summeries = null;
+		Vector<String> summeryVec;
+		summeryVec = new Vector<String>();
+		
 		summeries = doc.getElementsByClass("post_item_summary");
 		
 		if (summeries != null) {
@@ -50,12 +56,15 @@ public class FetchBlogs implements Fetch{
 				summeryVec.add(summery.text().replace("\u2014", "-"));
 			}
 		}
+		return summeryVec;
 	}
 	
 	@Override
-	public void getItemLink() {
+	public Vector<String> getItemLink() {
 		// TODO Auto-generated method stub
 		Elements news = null;
+		Vector<String> itemLinkVec;
+		itemLinkVec = new Vector<String>();
 		news = doc.getElementsByClass("titlelnk");
 
 		if (news != null) {
@@ -67,48 +76,17 @@ public class FetchBlogs implements Fetch{
 				itemLinkVec.add(item.absUrl("href"));
 			}
 		}
-		
-	}
-	@Override
-	public void printContent() {
-		// TODO Auto-generated method stub
-		for(int lp=0; lp < itemsVec.size(); lp++)
-		{
-			print(itemsVec.get(lp));
-			print(summeryVec.get(lp));
-			print(itemLinkVec.get(lp));
-			print(postDateVec.get(lp));
-			print("down");
-		}
+		return itemLinkVec;
 		
 	}
 	
-	private void print(String arg0){
-		System.out.println(arg0);
-	}
-	
-	private FetchBlogs(){
-		itemsVec = new Vector<String>();
-		summeryVec = new Vector<String>();
-		postDateVec = new Vector<String>();
-		itemLinkVec = new Vector<String>();
-		doc = null;
-		itemsVec.clear();
-		summeryVec.clear();
-		postDateVec.clear();
-	}
-	
-	public static Fetch newFetchBlogsInstance(){
-		FetchBlogs aInstance = new FetchBlogs();
-		return aInstance;
-	}
-	
-	
 	@Override
-	public void getPostDate() {
+	public Vector<String> getPostDate() {
 		// TODO Auto-generated method stub
 		String tempDate = null;
 		Elements pstimes = null;
+		Vector<String> postDateVec;
+		postDateVec = new Vector<String>();
 		pstimes = doc.getElementsByClass("post_item_foot");
 
 		if (pstimes != null) {
@@ -121,16 +99,13 @@ public class FetchBlogs implements Fetch{
 				postDateVec.add(tempDate.substring(startPos, startPos+10));
 			}
 		}
-		
-		
+		return postDateVec;
 		
 	}
-	
-	private Vector<String> itemsVec;
-	private Vector<String> summeryVec;
-	private Vector<String> itemLinkVec;
-	private Vector<String> postDateVec;
-	private Document doc;
 
+	private FetchBlogs(){
+		doc = null;
+	}
+	private Document doc;
 
 }

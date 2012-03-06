@@ -1,12 +1,11 @@
 package org.cnblogs.FetchMethod;
 
+import java.util.Vector;
+
 public interface Fetch {
 	public void Connect(String WebAddress);
-	public void getItems();
-	public void getItemSummery();
-	public void getItemLink();
-	public void getPostDate();
-	public void printContent();
-	
-	
+	public Vector<String> getItems();
+	public Vector<String> getItemSummery();
+	public Vector<String> getItemLink();
+	public Vector<String> getPostDate();
 }
