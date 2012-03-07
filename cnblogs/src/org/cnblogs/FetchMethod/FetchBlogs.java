@@ -103,7 +103,7 @@ public class FetchBlogs implements Fetch{
 		
 	}
 
-	private FetchBlogs(){
+	public FetchBlogs(){
 		doc = null;
 	}
 	private Document doc;

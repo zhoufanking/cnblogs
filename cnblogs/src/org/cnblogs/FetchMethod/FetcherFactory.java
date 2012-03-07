@@ -5,7 +5,7 @@ public class FetcherFactory {
 		
 		Fetch aFetchInstance = null;
 		try {
-			aFetchInstance  = (Fetch)Class.forName("org.cngblogs.FetchMethod."+type).newInstance();
+			aFetchInstance  = (Fetch)Class.forName("org.cnblogs.FetchMethod."+type).newInstance();
 		} catch (InstantiationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
