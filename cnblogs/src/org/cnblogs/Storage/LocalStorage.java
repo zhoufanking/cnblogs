@@ -26,7 +26,7 @@ public class LocalStorage implements Storage {
 		for (int i = 0,length = sc.getItems().size(); i < length; i++) {
 			output.println(sc.getItems().get(i));
 			output.println(sc.getSummeries().get(i));
-			output.println(sc.getLinks().get(i));
+			
 			output.println(sc.getPostTimes().get(i));
 			output.println(i);
 		}

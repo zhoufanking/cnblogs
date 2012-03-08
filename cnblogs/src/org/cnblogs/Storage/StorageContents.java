@@ -7,14 +7,14 @@ public class StorageContents {
 		
 		items = new Vector<String>();
 		summeries = new Vector<String>();
-		links = new Vector<String>();
 		postTimes = new Vector<String>();
+		postContentPath = new Vector<String>();
+		length = 0;
+	}
+	public int getLength(){
+		return  items.size();
 	}
 	
-
-
-	
-
 	public Vector<String> getItems() {
 		return items;
 	}
@@ -27,24 +27,32 @@ public class StorageContents {
 	public void setSummeries(Vector<String> summeries) {
 		this.summeries = summeries;
 	}
-	public Vector<String> getLinks() {
-		return links;
-	}
-	public void setLinks(Vector<String> links) {
-		this.links = links;
-	}
+
+	
 	public Vector<String> getPostTimes() {
 		return postTimes;
 	}
 	public void setPostTimes(Vector<String> postTimes) {
 		this.postTimes = postTimes;
 	}
+	
+
+
+	public Vector<String> getPostContentPath() {
+		return postContentPath;
+	}
+
+	public void setPostContentPath(Vector<String> postContentPath) {
+		this.postContentPath = postContentPath;
+	}
+
 
 
 	private Vector<String> items ;
 	private Vector<String> summeries;
-	private Vector<String> links ;
 	private Vector<String> postTimes;
+	private Vector<String> postContentPath;
+	private int length ;
 	
 
 }

@@ -12,7 +12,7 @@ public class FetchBlogs implements Fetch{
 
 	@Override
 	public void Connect(String WebAddress){
-		// TODO Auto-generated method stub
+
 		try {
 			doc = Jsoup.connect(WebAddress).userAgent("Mozilla").timeout(30000).get();
 		} catch (IOException e) {
@@ -22,7 +22,7 @@ public class FetchBlogs implements Fetch{
 
 	@Override
 	public Vector<String> getItems() {
-		// TODO Auto-generated method stub
+
 		Elements news = null;
 		Vector<String> itemsVec;
 		news = doc.getElementsByClass("titlelnk");
@@ -42,7 +42,7 @@ public class FetchBlogs implements Fetch{
 
 	@Override
 	public  Vector<String> getItemSummery() {
-		// TODO Auto-generated method stub
+
 		Elements summeries = null;
 		Vector<String> summeryVec;
 		summeryVec = new Vector<String>();
@@ -61,7 +61,7 @@ public class FetchBlogs implements Fetch{
 	
 	@Override
 	public Vector<String> getItemLink() {
-		// TODO Auto-generated method stub
+		
 		Elements news = null;
 		Vector<String> itemLinkVec;
 		itemLinkVec = new Vector<String>();
@@ -82,7 +82,7 @@ public class FetchBlogs implements Fetch{
 	
 	@Override
 	public Vector<String> getPostDate() {
-		// TODO Auto-generated method stub
+
 		String tempDate = null;
 		Elements pstimes = null;
 		Vector<String> postDateVec;
@@ -106,6 +106,9 @@ public class FetchBlogs implements Fetch{
 	public FetchBlogs(){
 		doc = null;
 	}
+	
+	
+	
 	private Document doc;
 
 }

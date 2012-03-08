@@ -8,4 +8,5 @@ public interface Fetch {
 	public Vector<String> getItemSummery();
 	public Vector<String> getItemLink();
 	public Vector<String> getPostDate();
+	//public Vector<String> getPostContent();
 }
