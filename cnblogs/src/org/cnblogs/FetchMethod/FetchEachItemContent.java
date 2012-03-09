@@ -3,7 +3,7 @@ package org.cnblogs.FetchMethod;
 import java.io.IOException;
 import java.util.Vector;
 
-import org.cnblogs.Resourse.R;
+import org.cnblogs.Resourse.Res;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
@@ -19,7 +19,7 @@ public class FetchEachItemContent {
 		{
 			System.out.println("geting content of :"+postLinksVec.get(i));
 			
-			for (int j = 0; doc == null&&j < R.getRetrytimes(); j++) {
+			for (int j = 0; doc == null&&j < Res.getRetrytimes(); j++) {
 				
 				try {
 					doc = Jsoup.connect(postLinksVec.get(i))
@@ -29,7 +29,7 @@ public class FetchEachItemContent {
 				}
 			}
 			if(doc == null)
-				postContentVec.add(R.getFileNotExistMsg());
+				postContentVec.add(Res.getFileNotExistMsg());
 			else
 				postContentVec.add(doc.getElementsByClass("postBody").html());	
 			doc = null;

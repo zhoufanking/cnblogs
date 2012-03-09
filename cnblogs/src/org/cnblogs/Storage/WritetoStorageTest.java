@@ -3,7 +3,7 @@ package org.cnblogs.Storage;
 import java.io.File;
 import java.util.Vector;
 
-import org.cnblogs.Resourse.R;
+import org.cnblogs.Resourse.Res;
 
 public class WritetoStorageTest {
 
@@ -39,7 +39,7 @@ public class WritetoStorageTest {
 		
 //		WritetoStorage
 		LocalStorageXml output = new LocalStorageXml();
-		output.WritetoStorage(new File(R.getStorageFilePath()), sc);
+		output.WritetoStorage(new File(Res.getStorageFilePath()), sc);
 
 	}
 

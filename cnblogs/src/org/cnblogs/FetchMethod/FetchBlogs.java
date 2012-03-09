@@ -3,7 +3,7 @@ package org.cnblogs.FetchMethod;
 import java.io.IOException;
 import java.util.Vector;
 
-import org.cnblogs.Resourse.R;
+import org.cnblogs.Resourse.Res;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -14,11 +14,11 @@ public class FetchBlogs implements Fetch{
 	@Override
 	public boolean Connect(String WebAddress){
 
-		for(int Retry = 0 ; (doc == null)&&(Retry < R.getRetrytimes()); Retry++){
+		for(int Retry = 0 ; (doc == null)&&(Retry < Res.getRetrytimes()); Retry++){
 			try {
 				doc = Jsoup.connect(WebAddress).userAgent("Mozilla").timeout(3000).get();
 			} catch (IOException e) {
-					System.out.println(R.getConRetryMsg()+"第"+(Retry+1)+"次");			
+					System.out.println(Res.getConRetryMsg()+"第"+(Retry+1)+"次");			
 			}
 		}
 		if(doc == null)

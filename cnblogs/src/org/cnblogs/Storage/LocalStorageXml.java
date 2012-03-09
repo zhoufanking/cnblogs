@@ -16,7 +16,7 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
-import org.cnblogs.Resourse.R;
+import org.cnblogs.Resourse.Res;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -33,7 +33,7 @@ public class LocalStorageXml implements Storage {
 	public StorageContents LoadFromStorage(File fp) {
 		// TODO Auto-generated method stub
 		if(fp == null){
-			fp = new File(R.getStorageFilePath());
+			fp = new File(Res.getStorageFilePath());
 		}
 		if(!fp.exists())
 			return null;

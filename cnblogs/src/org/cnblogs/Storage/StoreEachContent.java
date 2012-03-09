@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.Vector;
 
-import org.cnblogs.Resourse.R;
+import org.cnblogs.Resourse.Res;
 
 public class StoreEachContent {
 
@@ -15,7 +15,7 @@ public class StoreEachContent {
 		String path = null;
 		System.out.println("create dir");
 		
-		File dir = new File(R.getContentsDir());
+		File dir = new File(Res.getContentsDir());
 		if(!dir.exists() ||!dir.isDirectory())
 		{
 			if(!dir.mkdir())
@@ -24,7 +24,7 @@ public class StoreEachContent {
 		
 		
 		for(int i = 0; i< eachContent.size();i++){
-			path = R.getContentsDir()+"\\"+i+".html";
+			path = Res.getContentsDir()+"\\"+i+".html";
 			File file = new File(path);
 			ContentPathes.add(path);
 			

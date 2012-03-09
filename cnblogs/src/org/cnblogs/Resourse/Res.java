@@ -1,6 +1,6 @@
 package org.cnblogs.Resourse;
 
-public class R {
+public class Res {
 	private  final static String  BASE_ADDRESS ="http://www.cnblogs.com";
 	private  final static String  FOLLOWING_ADDRESS = BASE_ADDRESS + "/p";
 	private  final static String  StorageFilePath ="c:\\cache.xml";

@@ -6,7 +6,7 @@ import java.util.Vector;
 import org.cnblogs.FetchMethod.Fetch;
 import org.cnblogs.FetchMethod.FetchEachItemContent;
 import org.cnblogs.FetchMethod.FetcherFactory;
-import org.cnblogs.Resourse.R;
+import org.cnblogs.Resourse.Res;
 import org.cnblogs.Storage.LocalStorageFactory;
 import org.cnblogs.Storage.Storage;
 import org.cnblogs.Storage.StorageContents;
@@ -43,8 +43,8 @@ public class Application {
 		Vector<String> postContentPath = new Vector<String>();
 			
 		System.out.println("Fetching............");
-		if (fetchBlogsIns.Connect(R.getBaseAddress()) == false ){
-			System.out.println(R.getConFailueMsg());
+		if (fetchBlogsIns.Connect(Res.getBaseAddress()) == false ){
+			System.out.println(Res.getConFailueMsg());
 			System.exit(-1);
 		}
 			
@@ -71,7 +71,7 @@ public class Application {
 		sc.setPostTimes(postTimes);
 		sc.setSummeries(summeries);
 		sc.setPostContentPath(links);
-		cache.WritetoStorage(new File(R.getStorageFilePath()),sc);
+		cache.WritetoStorage(new File(Res.getStorageFilePath()),sc);
 		
 		System.out.println("saving content fils.......");
 		postContentPath =StoreEachContent.Store(FetchEachItemContent.getPostContent(links));
