@@ -43,7 +43,11 @@ public class Application {
 		Vector<String> postContentPath = new Vector<String>();
 			
 		System.out.println("Fetching............");
-		fetchBlogsIns.Connect(R.getBaseAddress());
+		if (fetchBlogsIns.Connect(R.getBaseAddress()) == false ){
+			System.out.println(R.getConFailueMsg());
+			System.exit(-1);
+		}
+			
 		
 		items = fetchBlogsIns.getItems();
 		summeries= fetchBlogsIns.getItemSummery();
