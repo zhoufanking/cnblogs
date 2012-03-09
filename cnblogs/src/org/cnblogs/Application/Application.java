@@ -66,16 +66,16 @@ public class Application {
 		}
 		Storage cache = LocalStorageFactory.newInstance();
 		
+		System.out.println("saving content fils.......");
+		postContentPath =StoreEachContent.Store(FetchEachItemContent.getPostContent(links));
+	
+		
 		StorageContents sc = new StorageContents();
 		sc.setItems(items);
 		sc.setPostTimes(postTimes);
 		sc.setSummeries(summeries);
-		sc.setPostContentPath(links);
-		cache.WritetoStorage(new File(Res.getStorageFilePath()),sc);
-		
-		System.out.println("saving content fils.......");
-		postContentPath =StoreEachContent.Store(FetchEachItemContent.getPostContent(links));
-		
+		sc.setPostContentPath(postContentPath);
+		cache.WritetoStorage(new File(Res.getStorageFilePath()),sc);	
 		
 		System.out.println("done!");
 		

@@ -25,14 +25,17 @@ public class StoreEachContent {
 		
 		for(int i = 0; i< eachContent.size();i++){
 			path = Res.getContentsDir()+"\\"+i+".html";
+			System.out.println("Creating content file:  "+path);
+			
 			File file = new File(path);
+			
 			ContentPathes.add(path);
 			
 			PrintWriter output = null;
 			try {
 				output = new PrintWriter(file);
 			} catch (FileNotFoundException e) {
-				
+				System.out.println("Saving content file " +path+" error");
 				e.printStackTrace();
 			}
 			System.out.println("saving");

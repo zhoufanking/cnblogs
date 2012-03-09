@@ -20,18 +20,25 @@ public class FetchEachItemContent {
 			System.out.println("geting content of :"+postLinksVec.get(i));
 			
 			for (int j = 0; doc == null&&j < Res.getRetrytimes(); j++) {
-				
+				System.out.println("Startting the jsoup fetching process");
 				try {
 					doc = Jsoup.connect(postLinksVec.get(i))
 							.userAgent("Mozilla").timeout(3000).get();
 				} catch (IOException e) {
 					//e.printStackTrace();
+					System.out.println(Res.getConRetryMsg());
 				}
 			}
-			if(doc == null)
+			if(doc == null){
+				System.out.println("jsoup fetch tips error, doc is null");
 				postContentVec.add(Res.getFileNotExistMsg());
+			}
+				
 			else
-				postContentVec.add(doc.getElementsByClass("postBody").html());	
+				postContentVec.add(doc.getElementsByClass("post").html());	
+			if(i%3 == 0){
+//				System.out.println(doc.getElementsByClass("postbody").html());
+			}
 			doc = null;
 		}
 	
