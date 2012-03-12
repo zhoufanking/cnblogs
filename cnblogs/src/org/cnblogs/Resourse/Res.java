@@ -1,18 +1,20 @@
 package org.cnblogs.Resourse;
 
+import java.io.File;
+
 public class Res {
 	private  final static String  BASE_ADDRESS ="http://www.cnblogs.com";
 	private  final static String  FOLLOWING_ADDRESS = BASE_ADDRESS + "/p";
-	private  final static String  StorageFilePath ="c:\\cache.xml";
-	private  final static String  ContentsDir = "c:\\contents";
+	private  final static String  StorageFileName ="cache.xml";
+	private  final static String  ContentsDir = "contents";
 	private  final static int	  RetryTimes = 3;
-	private  final static String  Connection_Retry = "重建连接...";
-	private  final static String  Connection_Failue = "网络不给力哦，请稍候再试...";
-	private  final static String  FILENOTEXIST ="NOTCONTENT";
+	private  final static String  MSG_CONNECTION_RETRY = "重建连接...";
+	private  final static String  MSG_CONNECTION_FAILURE = "网络不给力哦，请稍候再试...";
+	private  final static String  MSG_FILE_NOT_EXIST ="NOTCONTENT";
 	
 	
 	public static String getFileNotExistMsg() {
-		return FILENOTEXIST;
+		return MSG_FILE_NOT_EXIST;
 	}
 	public static int getRetrytimes() {
 		return RetryTimes;
@@ -24,18 +26,42 @@ public class Res {
 		return FOLLOWING_ADDRESS;
 	}
 	public static String getStorageFilePath(){
-		return StorageFilePath;
+		return buildPath(StorageFileName);
 	}
 	
 	public static String getContentsDir(){
-		return ContentsDir;
+		return buildPath(ContentsDir);
 	}
 	public static String getConFailueMsg() {
-		return Connection_Failue;
+		return MSG_CONNECTION_FAILURE;
 	}
 	public static String getConRetryMsg() {
-		return Connection_Retry;
+		return MSG_CONNECTION_RETRY;
 	}
+	
+	private static String getUserHome(){
+		String UserHome = System.getProperty("user.home");
+		
+		return UserHome;		
+	}
+	private static String getFSeparator(){
+		String separator;
+		separator = System.getProperty("file.separator");
+		
+		return separator;
+	}
+	
+	private static String buildPath(String name){
+		String HomeDir = getUserHome();
+		String Separator = getFSeparator();
+		String Path;
+		
+		Path  = HomeDir + Separator + name;
+		
+		return Path;
+		
+	}
+	
 	
 
 }
