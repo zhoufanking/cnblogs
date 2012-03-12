@@ -1,19 +1,28 @@
 package org.cnblogs.FetchMethod;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.URL;
 import java.util.Vector;
 
 import org.cnblogs.Resourse.Res;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-
-
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 public class FetchEachItemContent {
 
+	private static Document doc = null;
+	private static String post = null;
+	private static Vector<String> tempVec = new Vector<String>();
+	
 	public static Vector<String> getPostContent(Vector<String> postLinksVec) {
 		// TODO Auto-generated method stub
 		Vector<String> postContentVec = new Vector<String>();
-		Document doc = null;
+//		Document doc = null;
 		
 		for(int i = 0; i< postLinksVec.size();i++)
 		{
@@ -23,7 +32,7 @@ public class FetchEachItemContent {
 				System.out.println("Startting the jsoup fetching process");
 				try {
 					doc = Jsoup.connect(postLinksVec.get(i))
-							.userAgent("Mozilla").timeout(3000).get();
+							.userAgent("Mozilla").timeout(Res.geTimeOut()).get();
 				} catch (IOException e) {
 					//e.printStackTrace();
 					System.out.println(Res.getConRetryMsg());
@@ -34,14 +43,84 @@ public class FetchEachItemContent {
 				postContentVec.add(Res.getFileNotExistMsg());
 			}
 				
-			else
-				postContentVec.add(doc.getElementsByClass("post").html());	
-			if(i%3 == 0){
-//				System.out.println(doc.getElementsByClass("postbody").html());
+			else{
+				//post = doc.getElementsByClass("post").html();
+				getContentImg(doc);
+				postContentVec.add(doc.getElementsByClass("post").html());
 			}
+					
+			
 			doc = null;
 		}
 	
 		return postContentVec;
+	}
+	
+	private static void  getContentImg(Document doc){
+		
+		Elements Imgs = doc.select("[src]");
+		
+		String imgLink = null;
+		String imgPath = null;
+		
+		tempVec.clear();
+		
+		 for (Element src : Imgs) {
+			 
+			 if(src.tagName().equals("img")){
+				 //obtain the image link
+				 imgLink = src.attr("abs:src");
+				 //fetch the image and store it in a local dir
+				 imgPath = makeImg(imgLink,Res.getImgDir()+File.separator);
+				 
+				 if(imgPath.equals(null))
+					 imgPath = "BADIMAGE";
+				 //replace the image link in the post body from a web link to a local link
+				src.attr("abs:src", imgPath);
+				 
+			 }
+		}
+		
+		
+	}
+	
+	
+	// 生成图片函数
+	// return the image's local path
+	private static String makeImg(String imgUrl, String imgDir) {
+		String path = null;
+		try {
+
+			// 创建流
+			BufferedInputStream in = new BufferedInputStream(
+					new URL(imgUrl).openStream());
+			if(in.equals(null))
+			{
+				return null;
+			}
+
+			// 生成图片名
+			int index = imgUrl.lastIndexOf("/");
+			String sName = imgUrl.substring(index + 1, imgUrl.length());
+			path = imgDir + File.separator+sName;
+			System.out.println(sName);
+			// 存放地址
+			File img = new File(path);
+			// 生成图片
+			BufferedOutputStream out = new BufferedOutputStream(
+					new FileOutputStream(img));
+			byte[] buf = new byte[2048];
+			int length = in.read(buf);
+			while (length != -1) {
+				out.write(buf, 0, length);
+				length = in.read(buf);
+			}
+			in.close();
+			out.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return path;
 	}
 }

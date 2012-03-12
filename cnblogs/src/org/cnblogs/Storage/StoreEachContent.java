@@ -11,20 +11,35 @@ public class StoreEachContent {
 
 	public static Vector<String> Store(	Vector<String> eachContent){
 		
+		//create the  contents dir
 		Vector<String> ContentPathes = new Vector<String>();
 		String path = null;
-		System.out.println("create dir");
+		System.out.println("create content dir");
 		
 		File dir = new File(Res.getContentsDir());
 		if(!dir.exists() ||!dir.isDirectory())
 		{
-			if(!dir.mkdir())
-				return null;				
+			if(!dir.mkdir()){
+				System.out.println("Create" + Res.getContentsDir() +"failed!");
+				return null;
+			}
+								
 		}
 		
+		File dirImg = new File(Res.getImgDir());
+		if(!dirImg.exists() ||!dirImg.isDirectory())
+		{
+			if(!dirImg.mkdir()){
+				System.out.println("Create" + Res.getImgDir() +"failed!");
+				return null;
+			}
+			System.out.println("image dir ok,path is :" + Res.geTimeOut()+File.separator);
+								
+		}
 		
+		//write content to local file
 		for(int i = 0; i< eachContent.size();i++){
-			path = Res.getContentsDir()+"\\"+i+".html";
+			path = Res.getContentsDir()+File.separator+i+".html";
 			System.out.println("Creating content file:  "+path);
 			
 			File file = new File(path);

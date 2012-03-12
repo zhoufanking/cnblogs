@@ -16,7 +16,7 @@ public class FetchBlogs implements Fetch{
 
 		for(int Retry = 0 ; (doc == null)&&(Retry < Res.getRetrytimes()); Retry++){
 			try {
-				doc = Jsoup.connect(WebAddress).userAgent("Mozilla").timeout(3000).get();
+				doc = Jsoup.connect(WebAddress).userAgent("Mozilla").timeout(Res.geTimeOut()).get();
 			} catch (IOException e) {
 					System.out.println(Res.getConRetryMsg()+"第"+(Retry+1)+"次");			
 			}
