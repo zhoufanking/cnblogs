@@ -16,8 +16,8 @@ import org.jsoup.select.Elements;
 public class FetchEachItemContent {
 
 	private static Document doc = null;
-	private static String post = null;
-	private static Vector<String> tempVec = new Vector<String>();
+//	private static String post = null;
+//	private static Vector<String> tempVec = new Vector<String>();
 	
 	public static Vector<String> getPostContent(Vector<String> postLinksVec) {
 		// TODO Auto-generated method stub
