@@ -14,14 +14,14 @@ import org.cnblogs.Storage.StoreEachContent;
 
 public class Application {
 	
-
-	public static void FetchAPage(Fetch aInstance,String address){
-		aInstance.Connect(address);
-		aInstance.getItems();
-		aInstance.getItemSummery();
-		aInstance.getItemLink();
-		aInstance.getPostDate();
-	}
+//
+//	public static void FetchAPage(Fetch aInstance,String address){
+//		aInstance.Connect(address);
+//		aInstance.getItems();
+//		aInstance.getItemSummery();
+//		aInstance.getItemLink();
+//		aInstance.getPostDate();
+//	}
 	
 	public void printContent() {
 		// TODO Auto-generated method stub
@@ -56,14 +56,14 @@ public class Application {
 		
 		
 		
-		for(int lp=0; lp < items.size(); lp++)
-		{
-			System.out.println(items.get(lp));
-			System.out.println(summeries.get(lp));
-			System.out.println(links.get(lp));
-			System.out.println(postTimes.get(lp));
-			
-		}
+//		for(int lp=0; lp < items.size(); lp++)
+//		{
+//			System.out.println(items.get(lp));
+//			System.out.println(summeries.get(lp));
+//			System.out.println(links.get(lp));
+//			System.out.println(postTimes.get(lp));
+//			
+//		}
 		Storage cache = LocalStorageFactory.newInstance();
 		
 		System.out.println("saving content fils.......");

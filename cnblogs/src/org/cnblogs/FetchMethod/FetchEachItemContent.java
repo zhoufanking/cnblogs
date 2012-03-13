@@ -61,27 +61,36 @@ public class FetchEachItemContent {
 		Elements Imgs = doc.select("[src]");
 		
 		String imgLink = null;
-		String imgPath = null;
+		String imgPath = "BADIMAGE";
 		
-		tempVec.clear();
+		File dirImg = new File(Res.getImgDir());
+		if(!dirImg.exists() ||!dirImg.isDirectory())
+		{
+			if(!dirImg.mkdir()){
+				System.out.println("Create" + Res.getImgDir() +"failed!");
+			}
+			System.out.println("image dir ok,path is :" + Res.getImgDir()+File.separator);
+							
+		}
 		
 		 for (Element src : Imgs) {
 			 
 			 if(src.tagName().equals("img")){
 				 //obtain the image link
 				 imgLink = src.attr("abs:src");
-				 //fetch the image and store it in a local dir
-				 imgPath = makeImg(imgLink,Res.getImgDir()+File.separator);
-				 
-				 if(imgPath.equals(null))
+				 if(!imgLink.contains("?")&&!imgLink.equals(null))
+					 //fetch the image and store it in a local dir
+					 imgPath = makeImg(imgLink,Res.getImgDir()+File.separator);
+				 else
 					 imgPath = "BADIMAGE";
 				 //replace the image link in the post body from a web link to a local link
 				src.attr("abs:src", imgPath);
 				 
-			 }
+			
 		}
 		
 		
+	}
 	}
 	
 	
@@ -89,20 +98,35 @@ public class FetchEachItemContent {
 	// return the image's local path
 	private static String makeImg(String imgUrl, String imgDir) {
 		String path = null;
+		if(imgUrl.equals(null) || imgDir.equals(null)){
+			path = "BADLINK OR DIRNAME";
+			return path;
+		}
+			
+		
 		try {
 
 			// 创建流
-			BufferedInputStream in = new BufferedInputStream(
-					new URL(imgUrl).openStream());
-			if(in.equals(null))
-			{
-				return null;
+			BufferedInputStream in = null;
+			try {
+				in = new BufferedInputStream(
+						new URL(imgUrl).openStream());
+			} catch (Exception e) {
+				path = "BADLINK";
+				return path;
+			}finally{
+				if(in.equals(null))
+				{
+					path = "BADLINK";
+					return path;
+				}
 			}
+			
 
 			// 生成图片名
 			int index = imgUrl.lastIndexOf("/");
 			String sName = imgUrl.substring(index + 1, imgUrl.length());
-			path = imgDir + File.separator+sName;
+			path = imgDir+sName;
 			System.out.println(sName);
 			// 存放地址
 			File img = new File(path);
@@ -118,7 +142,8 @@ public class FetchEachItemContent {
 			in.close();
 			out.close();
 		} catch (Exception e) {
-			e.printStackTrace();
+			//e.printStackTrace();
+			return (path = "BADIMAGE");
 		}
 		
 		return path;

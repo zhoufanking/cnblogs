@@ -26,16 +26,7 @@ public class StoreEachContent {
 								
 		}
 		
-		File dirImg = new File(Res.getImgDir());
-		if(!dirImg.exists() ||!dirImg.isDirectory())
-		{
-			if(!dirImg.mkdir()){
-				System.out.println("Create" + Res.getImgDir() +"failed!");
-				return null;
-			}
-			System.out.println("image dir ok,path is :" + Res.geTimeOut()+File.separator);
-								
-		}
+		
 		
 		//write content to local file
 		for(int i = 0; i< eachContent.size();i++){

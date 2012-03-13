@@ -8,7 +8,7 @@ public class Res {
 	private  final static String  FOLLOWING_ADDRESS = BASE_ADDRESS + "/p";
 	private  final static String  StorageFileName ="cache.xml";
 	private  final static String  ContentsDir = "contents";
-	private  final static String  ImgDir = "Images";
+	private  final static String  ImgDir = "Pics";
 	private  final static int	  RetryTimes = 3;
 	private  final static int     TimeOut = 3000;
 	
