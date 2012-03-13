@@ -84,7 +84,7 @@ public class FetchEachItemContent {
 				 else
 					 imgPath = "BADIMAGE";
 				 //replace the image link in the post body from a web link to a local link
-				src.attr("abs:src", imgPath);
+				src.attr("src", imgPath);
 				 
 			
 		}
